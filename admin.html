@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Submissions</title>
+<style>body{font-family:Arial,sans-serif;background:#f0f2f5;padding:20px;color:#1c1e21}main{max-width:1000px;margin:auto;background:#fff;padding:20px;border-radius:10px;overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;border-bottom:1px solid #ddd;padding:10px;font-size:14px}th{background:#f5f6f7}.bar{display:flex;justify-content:space-between;align-items:center;gap:12px}button{background:#1877f2;color:white;border:0;padding:9px 12px;border-radius:5px}</style></head>
+<body><main><div class="bar"><h1>Demo submissions</h1><form action="{{ url_for('admin_logout') }}" method="post"><button>Log out</button></form></div>
+<p>These records contain names and fictional prank codes only. Do not use real passwords.</p>
+{% if rows %}<table><thead><tr><th>ID</th><th>Full name</th><th>Prank code</th><th>Submitted at</th></tr></thead><tbody>
+{% for row in rows %}<tr><td>{{ row.id }}</td><td>{{ row.full_name }}</td><td>{{ row.prank_code }}</td><td>{{ row.created_at }}</td></tr>{% endfor %}
+</tbody></table>{% else %}<p>No submissions yet.</p>{% endif %}
+</main></body></html>
