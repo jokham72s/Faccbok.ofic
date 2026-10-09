@@ -3,353 +3,353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1877f2">
-<title>Connect</title>
+<meta name="theme-color" content="#f0f2f5">
+
+<title>Social Connect</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --blue:#1877f2;
-  --bg:#f0f2f5;
-  --text:#1c1e21;
-  --muted:#65676b;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+:root {
+  --blue: #1877f2;
+  --background: #f0f2f5;
+  --text: #1c1e21;
+  --gray: #606770;
 }
 
-header{
-  height:65px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 7%;
-  box-shadow:0 2px 8px #0000000d;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
 }
 
-.logo{
-  color:var(--blue);
-  font-size:30px;
-  font-weight:800;
-  letter-spacing:-1px;
+main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
 }
 
-.header-badge{
-  background:#e7f3ff;
-  color:#0866ff;
-  padding:9px 15px;
-  border-radius:30px;
-  font-size:13px;
-  font-weight:bold;
+.layout {
+  width: 100%;
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  align-items: center;
+  gap: 65px;
 }
 
-main{
-  max-width:1000px;
-  min-height:calc(100vh - 110px);
-  margin:auto;
-  padding:40px 20px;
-  display:grid;
-  grid-template-columns:1fr 390px;
-  align-items:center;
-  gap:60px;
+.intro {
+  padding-bottom: 35px;
 }
 
-.hero h1{
-  color:var(--blue);
-  font-size:clamp(42px,6vw,65px);
-  line-height:1.05;
-  margin-bottom:20px;
-  animation:fadeUp .7s ease;
+.logo {
+  color: var(--blue);
+  font-size: 58px;
+  font-weight: 750;
+  letter-spacing: -2.5px;
+  margin-bottom: 16px;
 }
 
-.hero p{
-  font-size:23px;
-  line-height:1.5;
-  max-width:440px;
-  animation:fadeUp .9s ease;
+.intro p {
+  font-size: 26px;
+  line-height: 1.35;
+  max-width: 440px;
 }
 
-.hero .tagline{
-  display:inline-block;
-  margin-top:24px;
-  color:#0866ff;
-  background:#e7f3ff;
-  padding:10px 15px;
-  border-radius:8px;
-  font-size:14px;
-  font-weight:bold;
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  animation: appear 0.5s ease;
 }
 
-.card{
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 8px 28px #00000012;
-  animation:fadeUp .6s ease;
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
-.card h2{
-  font-size:24px;
-  margin-bottom:8px;
+.description {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
-.subheading{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
-  margin-bottom:22px;
+.field {
+  margin-bottom: 14px;
 }
 
-.field{
-  margin-bottom:17px;
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 7px;
 }
 
-label{
-  display:block;
-  font-size:14px;
-  font-weight:600;
-  margin-bottom:8px;
+input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccd0d5;
+  border-radius: 7px;
+  outline: none;
+  transition: 0.2s;
 }
 
-input{
-  width:100%;
-  padding:15px;
-  border:1px solid #ccd0d5;
-  border-radius:8px;
-  font-size:16px;
-  outline:none;
-  transition:.2s;
+input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px #1877f21c;
 }
 
-input:focus{
-  border-color:var(--blue);
-  box-shadow:0 0 0 3px #1877f21c;
+button {
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-button{
-  border:0;
-  cursor:pointer;
-  transition:transform .2s,background .2s;
+button:active {
+  transform: scale(0.98);
 }
 
-button:active{
-  transform:scale(.98);
+.submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--blue);
+  color: white;
+  border-radius: 7px;
+  font-size: 19px;
+  font-weight: bold;
 }
 
-.submit{
-  width:100%;
-  padding:15px;
-  border-radius:8px;
-  background:var(--blue);
-  color:white;
-  font-size:18px;
-  font-weight:bold;
+.submit:hover {
+  background: #166fe5;
 }
 
-.submit:hover{
-  background:#0866ff;
+.divider {
+  height: 1px;
+  background: #dadde1;
+  margin: 22px 0;
 }
 
-#result{
-  display:none;
-  margin-top:20px;
-  padding:22px 15px;
-  text-align:center;
-  border-radius:12px;
-  background:#e8f7ed;
-  color:#176534;
-  animation:fadeUp .4s ease;
+.create {
+  display: block;
+  margin: auto;
+  padding: 13px 18px;
+  background: #42b72a;
+  color: white;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
-#result .emoji{
-  font-size:48px;
-  margin-bottom:10px;
+.create:hover {
+  background: #36a420;
 }
 
-#result h3{
-  font-size:22px;
-  margin-bottom:8px;
+#result {
+  display: none;
+  margin-top: 18px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 9px;
+  background: #e7f7ec;
+  color: #176534;
+  animation: appear 0.4s ease;
 }
 
-#result p{
-  font-size:14px;
-  line-height:1.6;
+#result .emoji {
+  font-size: 42px;
+  margin-bottom: 8px;
 }
 
-footer{
-  text-align:center;
-  color:#65676b;
-  font-size:12px;
-  padding:18px;
+#result h3 {
+  margin-bottom: 7px;
 }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:translateY(0)}
+#result p {
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-@media(max-width:760px){
-  header{padding:0 18px}
-  main{
-    grid-template-columns:1fr;
-    gap:28px;
-    padding:35px 16px;
-    max-width:430px;
+.note {
+  font-size: 12px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 18px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  color: var(--gray);
+  font-size: 12px;
+  padding: 18px;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-  .hero{text-align:center}
-  .hero h1{font-size:47px}
-  .hero p{font-size:18px;margin:auto}
-  .card{padding:21px}
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  main {
+    align-items: flex-start;
+    padding: 35px 16px;
+  }
+
+  .layout {
+    max-width: 420px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .intro {
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .logo {
+    font-size: 48px;
+  }
+
+  .intro p {
+    font-size: 19px;
+    margin: auto;
+  }
+
+  .card {
+    padding: 20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Connect</div>
-  <div class="header-badge">Let's connect ✨</div>
-</header>
-
 <main>
+  <div class="layout">
 
-  <section class="hero">
-    <h1>Connect<br>with friends.</h1>
+    <section class="intro">
+      <div class="logo">social</div>
 
-    <p>
-      A place to connect, share moments,
-      and make every interaction memorable.
-    </p>
+      <p>
+        Connect with friends and the world around you.
+      </p>
+    </section>
 
-    <div class="tagline">Your next surprise awaits ✨</div>
-  </section>
+    <section class="card">
+      <h2>Welcome</h2>
 
-  <section class="card">
+      <p class="description">
+        Enter your name and a fictional code to reveal a surprise.
+      </p>
 
-    <h2>Join the fun</h2>
+      <form id="form">
 
-    <p class="subheading">
-      Enter your name and create a fictional code
-      to discover your surprise.
-    </p>
+        <div class="field">
+          <label for="name">Your name</label>
+          <input
+            id="name"
+            name="full_name"
+            type="text"
+            placeholder="Your name"
+            maxlength="80"
+            autocomplete="name"
+            required>
+        </div>
 
-    <form id="form">
+        <div class="field">
+          <label for="code">Fun code</label>
+          <input
+            id="code"
+            name="prank_code"
+            type="text"
+            placeholder="Create a fictional code"
+            maxlength="40"
+            autocomplete="off"
+            required>
+        </div>
 
-      <div class="field">
-        <label for="name">Your name</label>
-        <input
-          id="name"
-          name="full_name"
-          type="text"
-          placeholder="Enter your name"
-          maxlength="80"
-          autocomplete="name"
-          required>
+        <button class="submit" type="submit">
+          Continue
+        </button>
+
+      </form>
+
+      <div id="result" role="status" aria-live="polite">
+        <div class="emoji">🎉</div>
+        <h3>Surprise unlocked!</h3>
+        <p id="message"></p>
       </div>
 
-      <div class="field">
-        <label for="code">Your fun code</label>
-        <input
-          id="code"
-          name="prank_code"
-          type="text"
-          placeholder="Create any fictional code"
-          maxlength="40"
-          autocomplete="off"
-          required>
-      </div>
+      <div class="divider"></div>
 
-      <button class="submit" type="submit" id="submit">
-        Discover Surprise
+      <button class="create" id="surpriseButton" type="button">
+        Reveal the surprise
       </button>
 
-    </form>
+      <p class="note">
+        An unofficial social-style experience.
+        Not connected to Facebook.
+      </p>
+    </section>
 
-    <div id="result" role="status" aria-live="polite">
-      <div class="emoji">🎉</div>
-      <h3>Surprise!</h3>
-      <p id="message"></p>
-    </div>
-
-  </section>
-
+  </div>
 </main>
 
 <footer>
-  Connect · Made for fun
+  Social Connect · Made for fun
 </footer>
 
 <script>
-/*
-  Optional backend URL:
-  Replace the empty string with your PythonAnywhere
-  API endpoint after configuring the JSON API.
-*/
-const API_URL = "";
-
 const form = document.getElementById("form");
-const button = document.getElementById("submit");
 const result = document.getElementById("result");
 const message = document.getElementById("message");
+const surpriseButton = document.getElementById("surpriseButton");
 
-form.addEventListener("submit", async function(event){
+function reveal(name) {
+  message.textContent =
+    "Hey " + name + "! You've unlocked the surprise. Have fun! 🎊";
+
+  result.style.display = "block";
+  result.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
+}
+
+form.addEventListener("submit", function(event) {
   event.preventDefault();
 
   const name = document.getElementById("name").value.trim();
   const code = document.getElementById("code").value.trim();
 
-  if(!name || !code){
+  if (!name || !code) {
     return;
   }
 
-  button.disabled = true;
-  button.textContent = "One moment...";
+  reveal(name);
+});
 
-  try {
-    if(API_URL){
-      const response = await fetch(API_URL,{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          full_name:name,
-          prank_code:code
-        })
-      });
+surpriseButton.addEventListener("click", function() {
+  const name = document.getElementById("name").value.trim();
 
-      const data = await response.json();
-
-      if(!response.ok){
-        throw new Error(data.message || "Could not submit.");
-      }
-    }
-
-    message.textContent =
-      "Hey " + name + "! You've unlocked your surprise. " +
-      "Share a laugh with your friends! 🎊";
-
-    result.style.display = "block";
-    form.reset();
-
-  } catch(error) {
-    message.textContent =
-      "The server is unavailable right now. Please try again later.";
-
-    result.style.display = "block";
-    result.style.background = "#fff0f0";
-    result.style.color = "#a11b1b";
-
-  } finally {
-    button.disabled = false;
-    button.textContent = "Discover Surprise";
-  }
+  reveal(name || "Friend");
 });
 </script>
 
