@@ -1,391 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1877f2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1877f2">
+<title>Connect</title>
 
-  <title>Social Connect</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+:root{
+  --blue:#1877f2;
+  --bg:#f0f2f5;
+  --text:#1c1e21;
+  --muted:#65676b;
+}
 
-    :root {
-      --blue: #1877f2;
-      --dark-blue: #0866ff;
-      --background: #f0f2f5;
-      --text: #1c1e21;
-      --muted: #65676b;
-      --white: #ffffff;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--background);
-      color: var(--text);
-      min-height: 100vh;
-    }
+header{
+  height:65px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+  box-shadow:0 2px 8px #0000000d;
+}
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 25px 16px;
-    }
+.logo{
+  color:var(--blue);
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 980px;
-      display: grid;
-      grid-template-columns: 1fr 400px;
-      align-items: center;
-      gap: 60px;
-    }
+.header-badge{
+  background:#e7f3ff;
+  color:#0866ff;
+  padding:9px 15px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+}
 
-    .intro {
-      padding-bottom: 35px;
-    }
+main{
+  max-width:1000px;
+  min-height:calc(100vh - 110px);
+  margin:auto;
+  padding:40px 20px;
+  display:grid;
+  grid-template-columns:1fr 390px;
+  align-items:center;
+  gap:60px;
+}
 
-    .brand {
-      color: var(--blue);
-      font-size: clamp(42px, 7vw, 62px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin-bottom: 15px;
-    }
+.hero h1{
+  color:var(--blue);
+  font-size:clamp(42px,6vw,65px);
+  line-height:1.05;
+  margin-bottom:20px;
+  animation:fadeUp .7s ease;
+}
 
-    .intro p {
-      max-width: 430px;
-      font-size: 25px;
-      line-height: 1.4;
-    }
+.hero p{
+  font-size:23px;
+  line-height:1.5;
+  max-width:440px;
+  animation:fadeUp .9s ease;
+}
 
-    .card {
-      background: var(--white);
-      padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
-    }
+.hero .tagline{
+  display:inline-block;
+  margin-top:24px;
+  color:#0866ff;
+  background:#e7f3ff;
+  padding:10px 15px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    .notice {
-      background: #fff8df;
-      color: #644f14;
-      border: 1px solid #f0d77b;
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 17px;
-    }
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 8px 28px #00000012;
+  animation:fadeUp .6s ease;
+}
 
-    .card h2 {
-      font-size: 21px;
-      margin-bottom: 7px;
-    }
+.card h2{
+  font-size:24px;
+  margin-bottom:8px;
+}
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
+.subheading{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:22px;
+}
 
-    .field {
-      margin-bottom: 13px;
-    }
+.field{
+  margin-bottom:17px;
+}
 
-    .field label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 7px;
-    }
+label{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:8px;
+}
 
-    .field input {
-      width: 100%;
-      padding: 15px;
-      border: 1px solid #ccd0d5;
-      border-radius: 7px;
-      outline: none;
-      font-size: 16px;
-      background: white;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ccd0d5;
+  border-radius:8px;
+  font-size:16px;
+  outline:none;
+  transition:.2s;
+}
 
-    .field input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.13);
-    }
+input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px #1877f21c;
+}
 
-    .field small {
-      display: block;
-      color: var(--muted);
-      margin-top: 6px;
-      line-height: 1.4;
-      font-size: 12px;
-    }
+button{
+  border:0;
+  cursor:pointer;
+  transition:transform .2s,background .2s;
+}
 
-    .submit-btn {
-      width: 100%;
-      border: none;
-      background: var(--blue);
-      color: white;
-      padding: 14px;
-      border-radius: 7px;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s;
-      margin-top: 5px;
-    }
+button:active{
+  transform:scale(.98);
+}
 
-    .submit-btn:hover {
-      background: #166fe5;
-    }
+.submit{
+  width:100%;
+  padding:15px;
+  border-radius:8px;
+  background:var(--blue);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
 
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
+.submit:hover{
+  background:#0866ff;
+}
 
-    .submit-btn:disabled {
-      opacity: 0.7;
-      cursor: wait;
-    }
+#result{
+  display:none;
+  margin-top:20px;
+  padding:22px 15px;
+  text-align:center;
+  border-radius:12px;
+  background:#e8f7ed;
+  color:#176534;
+  animation:fadeUp .4s ease;
+}
 
-    .status {
-      display: none;
-      padding: 12px;
-      border-radius: 7px;
-      margin-top: 15px;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
+#result .emoji{
+  font-size:48px;
+  margin-bottom:10px;
+}
 
-    .status.success {
-      display: block;
-      background: #e7f7ec;
-      color: #176534;
-      border: 1px solid #b8e4c5;
-    }
+#result h3{
+  font-size:22px;
+  margin-bottom:8px;
+}
 
-    .status.error {
-      display: block;
-      background: #fff0f0;
-      color: #a11b1b;
-      border: 1px solid #f2c1c1;
-    }
+#result p{
+  font-size:14px;
+  line-height:1.6;
+}
 
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 18px;
-      line-height: 1.6;
-    }
+footer{
+  text-align:center;
+  color:#65676b;
+  font-size:12px;
+  padding:18px;
+}
 
-    @media (max-width: 760px) {
-      .page {
-        align-items: flex-start;
-        padding-top: 45px;
-      }
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-      .container {
-        max-width: 420px;
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .intro {
-        text-align: center;
-        padding-bottom: 0;
-      }
-
-      .brand {
-        font-size: 47px;
-      }
-
-      .intro p {
-        font-size: 18px;
-        margin: auto;
-      }
-
-      .card {
-        padding: 19px;
-      }
-    }
-  </style>
+@media(max-width:760px){
+  header{padding:0 18px}
+  main{
+    grid-template-columns:1fr;
+    gap:28px;
+    padding:35px 16px;
+    max-width:430px;
+  }
+  .hero{text-align:center}
+  .hero h1{font-size:47px}
+  .hero p{font-size:18px;margin:auto}
+  .card{padding:21px}
+}
+</style>
 </head>
 
 <body>
 
-  <main class="page">
-    <div class="container">
+<header>
+  <div class="logo">Connect</div>
+  <div class="header-badge">Let's connect ✨</div>
+</header>
 
-      <section class="intro">
-        <div class="brand">Social</div>
-        <p>
-          Connect with friends and enjoy a fun,
-          interactive prank demo.
-        </p>
-      </section>
+<main>
 
-      <section class="card">
+  <section class="hero">
+    <h1>Connect<br>with friends.</h1>
 
-        <div class="notice">
-          <strong>Prank demo:</strong>
-          This is an unofficial demo, not affiliated with Facebook.
-          Enter your name and a fictional prank code only.
-          Never enter your real account password.
-        </div>
+    <p>
+      A place to connect, share moments,
+      and make every interaction memorable.
+    </p>
 
-        <h2>Try the demo</h2>
+    <div class="tagline">Your next surprise awaits ✨</div>
+  </section>
 
-        <p class="subtitle">
-          Enter your name and a made-up code to test the demo.
-        </p>
+  <section class="card">
 
-        <form id="prankForm">
+    <h2>Join the fun</h2>
 
-          <div class="field">
-            <label for="fullName">Your name</label>
-            <input
-              type="text"
-              id="fullName"
-              name="full_name"
-              placeholder="Enter your name"
-              maxlength="80"
-              autocomplete="name"
-              required
-            >
-          </div>
+    <p class="subheading">
+      Enter your name and create a fictional code
+      to discover your surprise.
+    </p>
 
-          <div class="field">
-            <label for="prankCode">Fictional prank code</label>
-            <input
-              type="text"
-              id="prankCode"
-              name="prank_code"
-              placeholder="Enter a made-up code"
-              maxlength="40"
-              autocomplete="off"
-              required
-            >
-            <small>
-              This is not a password field. Do not enter private
-              account information.
-            </small>
-          </div>
+    <form id="form">
 
-          <button class="submit-btn" id="submitBtn" type="submit">
-            Submit Demo
-          </button>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input
+          id="name"
+          name="full_name"
+          type="text"
+          placeholder="Enter your name"
+          maxlength="80"
+          autocomplete="name"
+          required>
+      </div>
 
-          <div
-            class="status"
-            id="status"
-            role="status"
-            aria-live="polite"
-          ></div>
+      <div class="field">
+        <label for="code">Your fun code</label>
+        <input
+          id="code"
+          name="prank_code"
+          type="text"
+          placeholder="Create any fictional code"
+          maxlength="40"
+          autocomplete="off"
+          required>
+      </div>
 
-        </form>
+      <button class="submit" type="submit" id="submit">
+        Discover Surprise
+      </button>
 
-        <div class="footer">
-          Unofficial social demo · No Facebook account connection
-        </div>
+    </form>
 
-      </section>
-
+    <div id="result" role="status" aria-live="polite">
+      <div class="emoji">🎉</div>
+      <h3>Surprise!</h3>
+      <p id="message"></p>
     </div>
-  </main>
 
-  <script>
-    /*
-      Replace this with your PythonAnywhere API address.
-      Example format:
-      https://YOUR-USERNAME.pythonanywhere.com/api/submit
-    */
-    const API_URL = "";
+  </section>
 
-    const form = document.getElementById("prankForm");
-    const button = document.getElementById("submitBtn");
-    const statusBox = document.getElementById("status");
+</main>
 
-    function showStatus(message, type) {
-      statusBox.textContent = message;
-      statusBox.className = "status " + type;
+<footer>
+  Connect · Made for fun
+</footer>
+
+<script>
+/*
+  Optional backend URL:
+  Replace the empty string with your PythonAnywhere
+  API endpoint after configuring the JSON API.
+*/
+const API_URL = "";
+
+const form = document.getElementById("form");
+const button = document.getElementById("submit");
+const result = document.getElementById("result");
+const message = document.getElementById("message");
+
+form.addEventListener("submit", async function(event){
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const code = document.getElementById("code").value.trim();
+
+  if(!name || !code){
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "One moment...";
+
+  try {
+    if(API_URL){
+      const response = await fetch(API_URL,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          full_name:name,
+          prank_code:code
+        })
+      });
+
+      const data = await response.json();
+
+      if(!response.ok){
+        throw new Error(data.message || "Could not submit.");
+      }
     }
 
-    form.addEventListener("submit", async function(event) {
-      event.preventDefault();
+    message.textContent =
+      "Hey " + name + "! You've unlocked your surprise. " +
+      "Share a laugh with your friends! 🎊";
 
-      const fullName =
-        document.getElementById("fullName").value.trim();
+    result.style.display = "block";
+    form.reset();
 
-      const prankCode =
-        document.getElementById("prankCode").value.trim();
+  } catch(error) {
+    message.textContent =
+      "The server is unavailable right now. Please try again later.";
 
-      if (!fullName || !prankCode) {
-        showStatus("Please fill in both fields.", "error");
-        return;
-      }
+    result.style.display = "block";
+    result.style.background = "#fff0f0";
+    result.style.color = "#a11b1b";
 
-      if (!API_URL) {
-        showStatus(
-          "The demo form is ready, but the backend API URL has not been configured yet.",
-          "error"
-        );
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = "Submitting...";
-      statusBox.className = "status";
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            full_name: fullName,
-            prank_code: prankCode
-          })
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            result.message || "Submission failed. Please try again."
-          );
-        }
-
-        form.reset();
-
-        showStatus(
-          result.message || "Demo submitted successfully!",
-          "success"
-        );
-
-      } catch (error) {
-        showStatus(
-          error.message ||
-          "Could not connect to the server. Please try again.",
-          "error"
-        );
-      } finally {
-        button.disabled = false;
-        button.textContent = "Submit Demo";
-      }
-    });
-  </script>
+  } finally {
+    button.disabled = false;
+    button.textContent = "Discover Surprise";
+  }
+});
+</script>
 
 </body>
 </html>
