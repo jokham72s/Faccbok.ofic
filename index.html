@@ -1,41 +1,391 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Facebook-style Demo</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f0f2f5;font-family:Arial,sans-serif;color:#1c1e21}
-.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;gap:55px;max-width:1000px;margin:auto}
-.brand{max-width:430px}.brand h1{font-size:58px;letter-spacing:-2px;color:#1877f2;margin:0 0 12px;font-weight:800}.brand p{font-size:25px;line-height:1.25;margin:0}
-.card{background:#fff;padding:18px;border-radius:10px;width:100%;max-width:395px;box-shadow:0 2px 12px #0002}
-.notice{font-size:12px;line-height:1.5;color:#6b4f00;background:#fff8dc;border:1px solid #f0d778;padding:9px;border-radius:6px;margin-bottom:12px}
-input{width:100%;padding:15px 14px;margin-bottom:12px;border:1px solid #dddfe2;border-radius:6px;font-size:16px}
-input:focus{outline:2px solid #b6d4fe;border-color:#1877f2}
-button{width:100%;border:0;border-radius:6px;padding:14px;background:#1877f2;color:#fff;font-weight:bold;font-size:18px;cursor:pointer}
-.small{font-size:12px;color:#606770;line-height:1.5;margin:12px 0 0}
-.flash{color:#b00020;font-size:13px;margin:8px 0}
-@media(max-width:760px){.wrap{flex-direction:column;gap:25px;text-align:center}.brand h1{font-size:46px}.brand p{font-size:20px}.card{text-align:left}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1877f2">
+
+  <title>Social Connect</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --blue: #1877f2;
+      --dark-blue: #0866ff;
+      --background: #f0f2f5;
+      --text: #1c1e21;
+      --muted: #65676b;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 980px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .intro {
+      padding-bottom: 35px;
+    }
+
+    .brand {
+      color: var(--blue);
+      font-size: clamp(42px, 7vw, 62px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      max-width: 430px;
+      font-size: 25px;
+      line-height: 1.4;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 5px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    .notice {
+      background: #fff8df;
+      color: #644f14;
+      border: 1px solid #f0d77b;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 17px;
+    }
+
+    .card h2 {
+      font-size: 21px;
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccd0d5;
+      border-radius: 7px;
+      outline: none;
+      font-size: 16px;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.13);
+    }
+
+    .field small {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
+      font-size: 12px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      background: var(--blue);
+      color: white;
+      padding: 14px;
+      border-radius: 7px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+      background: #166fe5;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+    .status {
+      display: none;
+      padding: 12px;
+      border-radius: 7px;
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .status.success {
+      display: block;
+      background: #e7f7ec;
+      color: #176534;
+      border: 1px solid #b8e4c5;
+    }
+
+    .status.error {
+      display: block;
+      background: #fff0f0;
+      color: #a11b1b;
+      border: 1px solid #f2c1c1;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        align-items: flex-start;
+        padding-top: 45px;
+      }
+
+      .container {
+        max-width: 420px;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .intro {
+        text-align: center;
+        padding-bottom: 0;
+      }
+
+      .brand {
+        font-size: 47px;
+      }
+
+      .intro p {
+        font-size: 18px;
+        margin: auto;
+      }
+
+      .card {
+        padding: 19px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="wrap">
-  <section class="brand">
-    <h1>facebook</h1>
-    <p>Connect with friends and the world around you.</p>
-  </section>
-  <section class="card">
-    <div class="notice"><strong>Demo only:</strong> This is an unofficial prank demo. Do not enter your real Facebook password. The second field is a fictional prank code.</div>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% for category, message in messages %}<div class="flash">{{ message }}</div>{% endfor %}
-    {% endwith %}
-    <form action="{{ url_for('submit') }}" method="post">
-      <input name="full_name" placeholder="Name" autocomplete="name" maxlength="100" required>
-      <input name="prank_code" placeholder="Fictional prank code (not a password)" maxlength="100" required>
-      <button type="submit">Continue</button>
-    </form>
-    <p class="small">Unofficial demo interface. No Facebook account is connected.</p>
-  </section>
-</div>
+
+  <main class="page">
+    <div class="container">
+
+      <section class="intro">
+        <div class="brand">Social</div>
+        <p>
+          Connect with friends and enjoy a fun,
+          interactive prank demo.
+        </p>
+      </section>
+
+      <section class="card">
+
+        <div class="notice">
+          <strong>Prank demo:</strong>
+          This is an unofficial demo, not affiliated with Facebook.
+          Enter your name and a fictional prank code only.
+          Never enter your real account password.
+        </div>
+
+        <h2>Try the demo</h2>
+
+        <p class="subtitle">
+          Enter your name and a made-up code to test the demo.
+        </p>
+
+        <form id="prankForm">
+
+          <div class="field">
+            <label for="fullName">Your name</label>
+            <input
+              type="text"
+              id="fullName"
+              name="full_name"
+              placeholder="Enter your name"
+              maxlength="80"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="prankCode">Fictional prank code</label>
+            <input
+              type="text"
+              id="prankCode"
+              name="prank_code"
+              placeholder="Enter a made-up code"
+              maxlength="40"
+              autocomplete="off"
+              required
+            >
+            <small>
+              This is not a password field. Do not enter private
+              account information.
+            </small>
+          </div>
+
+          <button class="submit-btn" id="submitBtn" type="submit">
+            Submit Demo
+          </button>
+
+          <div
+            class="status"
+            id="status"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+        </form>
+
+        <div class="footer">
+          Unofficial social demo · No Facebook account connection
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    /*
+      Replace this with your PythonAnywhere API address.
+      Example format:
+      https://YOUR-USERNAME.pythonanywhere.com/api/submit
+    */
+    const API_URL = "";
+
+    const form = document.getElementById("prankForm");
+    const button = document.getElementById("submitBtn");
+    const statusBox = document.getElementById("status");
+
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = "status " + type;
+    }
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const fullName =
+        document.getElementById("fullName").value.trim();
+
+      const prankCode =
+        document.getElementById("prankCode").value.trim();
+
+      if (!fullName || !prankCode) {
+        showStatus("Please fill in both fields.", "error");
+        return;
+      }
+
+      if (!API_URL) {
+        showStatus(
+          "The demo form is ready, but the backend API URL has not been configured yet.",
+          "error"
+        );
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Submitting...";
+      statusBox.className = "status";
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            full_name: fullName,
+            prank_code: prankCode
+          })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            result.message || "Submission failed. Please try again."
+          );
+        }
+
+        form.reset();
+
+        showStatus(
+          result.message || "Demo submitted successfully!",
+          "success"
+        );
+
+      } catch (error) {
+        showStatus(
+          error.message ||
+          "Could not connect to the server. Please try again.",
+          "error"
+        );
+      } finally {
+        button.disabled = false;
+        button.textContent = "Submit Demo";
+      }
+    });
+  </script>
+
 </body>
 </html>
